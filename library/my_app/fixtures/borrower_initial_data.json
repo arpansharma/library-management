@@ -1,0 +1,74 @@
+[
+  {
+    "model": "my_app.Borrower",
+    "pk": 1,
+    "fields": {
+      "borrower_type": "S",
+      "name": "Student1",
+      "email": "a@a.com",
+      "phone": 1,
+      "issue_count": 0,
+      "is_active": true
+    }
+  },
+  {
+    "model": "my_app.Borrower",
+    "pk": 2,
+    "fields": {
+      "borrower_type": "S",
+      "name": "Student2",
+      "email": "b@b.com",
+      "phone": 2,
+      "issue_count": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "my_app.Borrower",
+    "pk": 3,
+    "fields": {
+      "borrower_type": "S",
+      "name": "Student3",
+      "email": "c@c.com",
+      "phone": 3,
+      "issue_count": 2,
+      "is_active": true
+    }
+  },
+  {
+    "model": "my_app.Borrower",
+    "pk": 4,
+    "fields": {
+      "borrower_type": "T",
+      "name": "Teacher1",
+      "email": "a@a.com",
+      "phone": 10,
+      "issue_count": 4,
+      "is_active": true
+    }
+  },
+  {
+    "model": "my_app.Borrower",
+    "pk": 5,
+    "fields": {
+      "borrower_type": "T",
+      "name": "Teacher2",
+      "email": "b@b.com",
+      "phone": 20,
+      "issue_count": 3,
+      "is_active": true
+    }
+  },
+  {
+    "model": "my_app.Borrower",
+    "pk": 6,
+    "fields": {
+      "borrower_type": "T",
+      "name": "Teacher3",
+      "email": "c@c.com",
+      "phone": 30,
+      "issue_count": 2,
+      "is_active": true
+    }
+  }
+]

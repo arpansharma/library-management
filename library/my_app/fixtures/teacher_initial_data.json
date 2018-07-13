@@ -1,0 +1,32 @@
+[
+  {
+    "model": "my_app.Teacher",
+    "pk": 1,
+    "fields": {
+      "name": "Teacher1",
+      "email": "a@a.com",
+      "phone": 10,
+      "issue_count": 4
+    }
+  },
+  {
+    "model": "my_app.Teacher",
+    "pk": 2,
+    "fields": {
+      "name": "Teacher2",
+      "email": "b@b.com",
+      "phone": 20,
+      "issue_count": 3
+    }
+  },
+  {
+    "model": "my_app.Teacher",
+    "pk": 3,
+    "fields": {
+      "name": "Teacher3",
+      "email": "c@c.com",
+      "phone": 30,
+      "issue_count": 2
+    }
+  }
+]

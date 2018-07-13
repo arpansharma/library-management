@@ -1,0 +1,41 @@
+[
+  {
+    "model": "my_app.Book",
+    "pk": 1,
+    "fields": {
+      "title": "Book1",
+      "author": "Author1",
+      "pages": "100",
+      "publication": "AA",
+      "year_of_pub": "2007",      
+      "is_active": true,
+      "is_available": true
+    }
+  },
+  {
+    "model": "my_app.Book",
+    "pk": 2,
+    "fields": {
+      "title": "Book2",
+      "author": "Author2",
+      "pages": "150",
+      "publication": "BB",
+      "year_of_pub": "2009",      
+      "is_active": true,
+      "is_available": true
+    }
+  },
+  {
+    "model": "my_app.Book",
+    "pk": 3,
+    "fields": {
+      "title": "Book3",
+      "author": "Author3",
+      "pages": "120",
+      "publication": "CC",
+      "year_of_pub": "2005",      
+      "is_active": true,
+      "is_available": true
+    }
+  }
+]

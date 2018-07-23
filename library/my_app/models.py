@@ -22,8 +22,19 @@ class Borrower(models.Model):
 	is_active = models.BooleanField()
 
 class IssueSlip(models.Model):
-	borrower_id = models.ForeignKey(Borrower, on_delete=models.CASCADE)
-	book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
-	issue_date = models.DateField(auto_now_add=True)
-	due_date = models.DateField(blank=True)
-	actual_return_date = models.DateField(blank=True, null=True)
+	borrower = models.ForeignKey(Borrower, blank=True, on_delete=models.CASCADE)
+	book = models.ForeignKey(Book, blank=True, on_delete=models.CASCADE)
+	issue_date = models.DateTimeField(blank=True)
+	due_date = models.DateTimeField(blank=True)
+	actual_return_date = models.DateTimeField(blank=True, null=True, default=None)
+	fine_amount = models.IntegerField(blank=True, null=True, default=None)
+	reminder_count = models.IntegerField(blank=True, null=True, default=None)
+
+	# def save(self, *args, **kwargs):
+	# 	self.issue_date = datetime.now()
+	# 	self.due_date = self.issue_date + timedelta(minutes=7)
+	# 	self.book.is_available = False
+	# 	self.borrower.issue_count += 1
+	# 	self.book.save()
+	# 	self.borrower.save()
+	# 	super(IssueSlip, self).save(*args, **kwargs)

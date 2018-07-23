@@ -37,5 +37,70 @@
       "is_active": true,
       "is_available": true
     }
+  },
+  {
+    "model": "my_app.Book",
+    "pk": 4,
+    "fields": {
+      "title": "Book4",
+      "author": "Author4",
+      "pages": "200",
+      "publication": "DD",
+      "year_of_pub": "2014",      
+      "is_active": true,
+      "is_available": true
+    }
+  },
+  {
+    "model": "my_app.Book",
+    "pk": 5,
+    "fields": {
+      "title": "Book5",
+      "author": "Author5",
+      "pages": "250",
+      "publication": "EE",
+      "year_of_pub": "2015",      
+      "is_active": true,
+      "is_available": true
+    }
+  },
+  {
+    "model": "my_app.Book",
+    "pk": 6,
+    "fields": {
+      "title": "Book6",
+      "author": "Author6",
+      "pages": "180",
+      "publication": "FF",
+      "year_of_pub": "2012",      
+      "is_active": true,
+      "is_available": true
+    }
+  },
+  {
+    "model": "my_app.Book",
+    "pk": 7,
+    "fields": {
+      "title": "Book7",
+      "author": "Author7",
+      "pages": "230",
+      "publication": "GG",
+      "year_of_pub": "2011",      
+      "is_active": true,
+      "is_available": true
+    }
+  },
+  {
+    "model": "my_app.Book",
+    "pk": 8,
+    "fields": {
+      "title": "Book8",
+      "author": "Author8",
+      "pages": "110",
+      "publication": "HH",
+      "year_of_pub": "2015",      
+      "is_active": true,
+      "is_available": true
+    }
   }
 ]

@@ -2,15 +2,22 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
 
-from .views import BookViewSet, StudentViewSet, TeacherViewSet, BorrowerViewSet, IssueSlipViewSet
+from .views import (
+	BookViewSet,
+	StudentViewSet,
+	TeacherViewSet,
+	BorrowerViewSet,
+	IssueSlipViewSet
+)
 
 router = routers.SimpleRouter()
 router.register('books', BookViewSet)
 router.register('issue', IssueSlipViewSet)
-router.register('login', BookViewSet)
+# router.register('login', )
 router.register('borrower/students', StudentViewSet)
 router.register('borrower/teachers', TeacherViewSet)
 router.register('borrower', BorrowerViewSet)
+router.register('return', IssueSlipViewSet)
 urlpatterns = router.urls
 
 # urlpatterns = [

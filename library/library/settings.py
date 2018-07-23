@@ -121,10 +121,13 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+CELERY_BROKER_URL = 'amqp://localhost'
+CELERY_ALWAYS_EAGER = True
+SENDGRID_API_KEY = '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'

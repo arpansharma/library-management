@@ -1,0 +1,4 @@
+sendgrid.env
+db.sqlite3
+library/settings.py
+my_app/migrations/

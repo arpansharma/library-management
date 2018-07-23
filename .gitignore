@@ -1,3 +1,6 @@
 sendgrid.env
 library/db.sqlite3
 library/library/settings.py
+library/db.sqlite3
+library/library/settings.py
+library/my_app/migrations/

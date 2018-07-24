@@ -2,7 +2,6 @@ from datetime import datetime, timedelta
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from .models import Book, Borrower, IssueSlip
-from .tasks import SendMail
 from .serializers import (
     BookSerializer,
     BookDetailSerializer,
@@ -104,37 +103,18 @@ class IssueSlipViewSet(viewsets.ModelViewSet):
         borrower_object.issue_count -= 1
         book_object.save()
         borrower_object.save()
-        issue_object.actual_return_date = datetime.now()
-        issue_object.save()
-        if issue_object.due_date >= issue_object.actual_return_date:
-            SendMail.delay(
-                mail_type = 'Return',
-                book_title = book_object.title,
-                borrower_name = borrower_object.name,
-                borrower_email = borrower_object.email,
-                issue_date = issue_object.issue_date,
-                due_date = issue_object.due_date,
-                actual_return_date = issue_object.actual_return_date,
-                fine_amount = 0
-            )
+        actual_return_date = datetime.now().replace(second=0, microsecond=0)
+        if issue_object.due_date >= actual_return_date:    
+            request.data['actual_return_date'] = actual_return_date
+            self.update(request, *args, **kwargs)            
             return Response({'msg': 'You have no fine to pay'}, status=status.HTTP_200_OK)
         else:
-            elapsed_time = issue_object.actual_return_date - issue_object.due_date
-            issue_object.fine_amount = elapsed_time.seconds//60
-            SendMail.delay(
-                mail_type = 'Return',
-                book_title = book_object.title,
-                borrower_name = borrower_object.name,
-                borrower_email = borrower_object.email,
-                issue_date = issue_object.issue_date,
-                due_date = issue_object.due_date,
-                actual_return_date = issue_object.actual_return_date,
-                fine_amount = issue_object.fine_amount
-            )
-            return Response({'msg': 'You have a fine to pay', 'fine': issue_object.fine_amount}, status=status.HTTP_200_OK)
-
-        issue_object.save()
-        self.update(request, *args, **kwargs)
+            elapsed_time = actual_return_date - issue_object.due_date
+            fine_amount = elapsed_time.seconds//60
+            request.data['actual_return_date'] = actual_return_date
+            request.data['fine_amount'] = fine_amount            
+            self.update(request, *args, **kwargs)
+            return Response({'msg': 'You have a fine to pay', 'fine': fine_amount}, status=status.HTTP_200_OK)
 
 # def list(self, request):
 #         pass

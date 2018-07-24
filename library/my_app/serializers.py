@@ -1,8 +1,6 @@
 from datetime import datetime, timedelta
 from rest_framework import serializers
 from .models import Book, Borrower, IssueSlip
-from .tasks import SendMail
-
 
 class BookSerializer(serializers.ModelSerializer):
 	class Meta:
@@ -48,18 +46,8 @@ class IssueSlipSerializer(serializers.ModelSerializer):
 				borrower_object.issue_count += 1
 				book_object.save()
 				borrower_object.save()
-				validated_data['issue_date'] = datetime.now()
-				validated_data['due_date'] = validated_data['issue_date'] + timedelta(minutes=7)
-				SendMail.delay(
-					mail_type='Issue',
-					book_title=book_object.title,
-					borrower_name=borrower_object.name,
-					borrower_email=borrower_object.email,
-					issue_date=validated_data['issue_date'],
-					due_date=validated_data['due_date'],
-					actual_return_date = None,
-					fine_amount=0					
-				)
+				validated_data['issue_date'] = datetime.now().replace(second=0, microsecond=0)
+				validated_data['due_date'] = validated_data['issue_date'] + timedelta(minutes=7)				
 				return IssueSlip.objects.create(**validated_data)
 
 			elif borrower_object.borrower_type is 'T' and borrower_object.issue_count < 4:
@@ -67,18 +55,8 @@ class IssueSlipSerializer(serializers.ModelSerializer):
 				borrower_object.issue_count += 1
 				book_object.save()
 				borrower_object.save()
-				validated_data['issue_date'] = datetime.now()
-				validated_data['due_date'] = validated_data['issue_date'] + timedelta(minutes=14)
-				SendMail.delay(
-					mail_type = 'Issue',
-					book_title=book_object.title,
-					borrower_name=borrower_object.name,
-					borrower_email=borrower_object.email,
-					issue_date=validated_data['issue_date'],
-					due_date=validated_data['due_date'],
-					actual_return_date = None,
-					fine_amount=0
-				)
+				validated_data['issue_date'] = datetime.now().replace(second=0, microsecond=0)
+				validated_data['due_date'] = validated_data['issue_date'] + timedelta(minutes=14)				
 				return IssueSlip.objects.create(**validated_data)
 
 			else:

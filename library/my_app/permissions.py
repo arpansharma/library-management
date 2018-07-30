@@ -7,6 +7,8 @@ class ReadBookPermission(BasePermission):
         """
         Return `True` if permission is granted, `False` otherwise.
         """
+        if request.user.is_superuser == True:
+                return True
         if request.user.has_perm('my_app.read_book'):
             if view.action is 'list' or view.action is 'retrieve':
                 return True

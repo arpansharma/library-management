@@ -60,6 +60,7 @@ class BookViewSet(viewsets.ModelViewSet):
     def destroy(self, request, pk):
         book = self.get_object()
         book.is_active = False
+        book.is_available = False
         book.save()
         return Response("{'message':'Deleted'}",status=status.HTTP_200_OK)
 

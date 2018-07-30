@@ -5,8 +5,12 @@ from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAdminUser
-from .permissions import ReadBookPermission, ReadUpdateStudentPermission
 from .models import Book, Borrower, IssueSlip
+from .permissions import (
+    ReadBookPermission,
+    ReadUpdateStudentPermission,
+    ReadUpdateTeacherPermission
+)
 from .serializers import (
     BookSerializer,
     BookDetailSerializer,
@@ -61,9 +65,9 @@ class BookViewSet(viewsets.ModelViewSet):
 
 class StudentViewSet(viewsets.ModelViewSet):
 
+    queryset = Borrower.objects.filter(borrower_type__iexact='S')
     authentication_classes = (TokenAuthentication,)
     permission_classes = (ReadUpdateStudentPermission,)
-    queryset = Borrower.objects.filter(borrower_type__iexact='S')
 
     def get_serializer_class(self):
         if hasattr(self, 'action') and self.action == 'list':   
@@ -83,6 +87,8 @@ class StudentViewSet(viewsets.ModelViewSet):
 class TeacherViewSet(viewsets.ModelViewSet):
 
     queryset = Borrower.objects.filter(borrower_type__iexact='T')
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (ReadUpdateTeacherPermission,)
 
     def get_serializer_class(self):
         if hasattr(self, 'action') and self.action == 'list':   

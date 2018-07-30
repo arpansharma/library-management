@@ -1,0 +1,128 @@
+[
+  {
+    "model": "auth.User",
+    "pk": 1,
+    "fields": {
+      "username": "arpansharma",
+      "first_name": "",
+      "last_name": "",
+      "email": "arpansharma@a.com",
+      "password": "qawsedrf",
+      "groups": [],
+      "user_permissions": [],
+      "is_staff": true,
+      "is_active": true,
+      "is_superuser": true,
+      "last_login": null,
+      "date_joined": "2018-07-25T12:15:31.100"        
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "username": "Student1",
+      "first_name": "",
+      "last_name": "",
+      "email": "student1@a.com",
+      "password": "qawsedrf",
+      "groups": [],
+      "user_permissions": [],
+      "is_staff": false,
+      "is_active": true,
+      "is_superuser": false,
+      "last_login": null,
+      "date_joined": "2018-07-25T12:15:31.200"        
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "username": "Student2",
+      "first_name": "",
+      "last_name": "",
+      "email": "student2@a.com",
+      "password": "qawsedrf",
+      "groups": [],
+      "user_permissions": [],
+      "is_staff": false,
+      "is_active": true,
+      "is_superuser": false,
+      "last_login": null,
+      "date_joined": "2018-07-25T12:15:31.300"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+      "username": "Student3",
+      "first_name": "",
+      "last_name": "",
+      "email": "student3@a.com",
+      "password": "qawsedrf",
+      "groups": [],
+      "user_permissions": [],
+      "is_staff": false,
+      "is_active": true,
+      "is_superuser": false,
+      "last_login": null,
+      "date_joined": "2018-07-25T12:15:31.400"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 5,
+    "fields": {
+      "username": "Teacher1",
+      "first_name": "",
+      "last_name": "",
+      "email": "teacher1@a.com",
+      "password": "qawsedrf",
+      "groups": [],
+      "user_permissions": [],
+      "is_staff": false,
+      "is_active": true,
+      "is_superuser": false,
+      "last_login": null,
+      "date_joined": "2018-07-25T12:15:31.500"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 6,
+    "fields": {
+      "username": "Teacher2",
+      "first_name": "",
+      "last_name": "",
+      "email": "teacher2@a.com",
+      "password": "qawsedrf",
+      "groups": [],
+      "user_permissions": [],
+      "is_staff": false,
+      "is_active": true,
+      "is_superuser": false,
+      "last_login": null,
+      "date_joined": "2018-07-25T12:15:31.600"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 7,
+    "fields": {
+      "username": "Teacher3",
+      "first_name": "",
+      "last_name": "",
+      "email": "teacher3@a.com",
+      "password": "qawsedrf",
+      "groups": [],
+      "user_permissions": [],
+      "is_staff": false,
+      "is_active": true,
+      "is_superuser": false,
+      "last_login": null,
+      "date_joined": "2018-07-25T12:15:31.700"
+    }
+  }
+]

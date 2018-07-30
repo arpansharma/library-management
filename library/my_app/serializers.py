@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 from rest_framework import serializers
 from .models import Book, Borrower, IssueSlip
 
+
 class BookSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Book

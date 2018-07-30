@@ -1,6 +1,11 @@
 from datetime import datetime, timedelta
 from rest_framework import viewsets, status
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAdminUser
+from .permissions import ReadBookPermission, ReadUpdateStudentPermission
 from .models import Book, Borrower, IssueSlip
 from .serializers import (
     BookSerializer,
@@ -10,7 +15,6 @@ from .serializers import (
     IssueSlipSerializer
 )
 
-
 # def ObjectInactive(self, request, pk):
 #     object = self.get_object()
 #     object.is_active = False
@@ -18,17 +22,35 @@ from .serializers import (
 #     return Response("{'message':'Deleted'}",status=status.HTTP_200_OK)
 
 
-class BookViewSet(viewsets.ModelViewSet):
-    queryset = Book.objects.all()
+class CustomAuthToken(ObtainAuthToken):
 
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data,
+                                           context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({
+            'token': token.key,
+            'user_id': user.pk,
+            'email': user.email
+        })
+
+class BookViewSet(viewsets.ModelViewSet):
+
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (ReadBookPermission,)
+    queryset = Book.objects.all()
+       
     def get_serializer_class(self):
-        # import ipdb; ipdb.set_trace()        
-        if hasattr(self, 'action') and self.action == 'list':   
+
+        if hasattr(self, 'action') and self.action == 'list':               
             return BookSerializer
 
         elif hasattr(self, 'action') and self.action == 'retrieve':
             return BookDetailSerializer
-
+        
         return BookDetailSerializer
         
     def destroy(self, request, pk):
@@ -38,6 +60,9 @@ class BookViewSet(viewsets.ModelViewSet):
         return Response("{'message':'Deleted'}",status=status.HTTP_200_OK)
 
 class StudentViewSet(viewsets.ModelViewSet):
+
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (ReadUpdateStudentPermission,)
     queryset = Borrower.objects.filter(borrower_type__iexact='S')
 
     def get_serializer_class(self):
@@ -56,6 +81,7 @@ class StudentViewSet(viewsets.ModelViewSet):
         return Response("{'message':'Deleted'}",status=status.HTTP_200_OK)
 
 class TeacherViewSet(viewsets.ModelViewSet):
+
     queryset = Borrower.objects.filter(borrower_type__iexact='T')
 
     def get_serializer_class(self):
@@ -74,7 +100,11 @@ class TeacherViewSet(viewsets.ModelViewSet):
         return Response("{'message':'Deleted'}",status=status.HTTP_200_OK)
 
 class BorrowerViewSet(viewsets.ModelViewSet):
+
     queryset = Borrower.objects.all()
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAdminUser,)
+
     def get_serializer_class(self):
         if hasattr(self, 'action') and self.action == 'list':
             return BorrowerSerializer
@@ -85,8 +115,13 @@ class BorrowerViewSet(viewsets.ModelViewSet):
         return BorrowerDetailSerializer
 
 class IssueSlipViewSet(viewsets.ModelViewSet):
+
     queryset = IssueSlip.objects.all()
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAdminUser),
     serializer_class = IssueSlipSerializer
+
+
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)

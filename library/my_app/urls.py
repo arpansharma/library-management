@@ -3,6 +3,7 @@ from django.urls import path, include
 from rest_framework import routers
 from rest_framework.authtoken import views
 from .views import (
+	HomePage,
 	CustomAuthToken,
 	BookViewSet,
 	StudentViewSet,
@@ -22,5 +23,6 @@ urlpatterns = router.urls
 
 urlpatterns += [
 	path('api-token-auth/', CustomAuthToken.as_view()),
+	path('', HomePage.index, name='index'),
 	# path('api-other/', include('django.contrib.auth.urls')),
 ]

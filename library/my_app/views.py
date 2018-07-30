@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from django.shortcuts import render
 from rest_framework import viewsets, status
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
@@ -25,6 +26,10 @@ from .serializers import (
 #     object.save()
 #     return Response("{'message':'Deleted'}",status=status.HTTP_200_OK)
 
+class HomePage:
+
+    def index(request):
+        return render(request, 'index.html')
 
 class CustomAuthToken(ObtainAuthToken):
 

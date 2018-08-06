@@ -25,7 +25,7 @@ SECRET_KEY = 'nt5m0&=#fi((w7z04)aeyx(@@l90d-z*2kr(lply%5-d@g7dym'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['library.vogo.tech', '34.221.95.79']
 
 
 # Application definition
@@ -134,6 +134,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 CELERY_BROKER_URL = 'amqp://localhost'
 CELERY_ALWAYS_EAGER = True
-SENDGRID_API_KEY = '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'
+SENDGRID_API_KEY = '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'

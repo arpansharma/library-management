@@ -24,8 +24,7 @@ def SendMail(
 	to_email = Email(borrower_email)
 
 	issue_date = datetime.strptime(issue_date, "%Y-%m-%dT%H:%M:%S")
-	due_date = datetime.strptime(due_date, "%Y-%m-%dT%H:%M:%S")
-	actual_return_date = datetime.strptime(actual_return_date, "%Y-%m-%dT%H:%M:%S")
+	due_date = datetime.strptime(due_date, "%Y-%m-%dT%H:%M:%S")	
 	mail_date_format = "%d %B, %Y at %H:%M"
 	print ("Requset Type : " + mail_type)
 
@@ -40,6 +39,7 @@ def SendMail(
 						  + " to avoid any fines. Happy Reading !"
 				)
 	elif mail_type == 'Return':
+		actual_return_date = datetime.strptime(actual_return_date, "%Y-%m-%dT%H:%M:%S")
 		subject = 'Return Information'
 		fine_message = ''
 		if fine_amount is None:

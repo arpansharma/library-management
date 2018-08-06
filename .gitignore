@@ -139,3 +139,4 @@ tags
 sendgrid.env
 library/db.sqlite3
 library/my_app/migrations/
+library/library/settings.py

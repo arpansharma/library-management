@@ -23,8 +23,7 @@ class ReadUpdateStudentPermission(BasePermission):
     def has_permission(self, request, view):
             """
             Return `True` if permission is granted, `False` otherwise.
-            """
-            import ipdb; ipdb.set_trace()
+            """            
             if request.user.is_superuser == True:
                 return True
 
@@ -53,8 +52,7 @@ class ReadUpdateTeacherPermission(BasePermission):
             """
             Return `True` if permission is granted, `False` otherwise.
             """
-            import ipdb; ipdb.set_trace()
-
+            
             if request.user.is_superuser == True:
                 return True
 
